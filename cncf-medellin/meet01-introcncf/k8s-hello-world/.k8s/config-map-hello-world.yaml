@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  MY_ENV1: you are the best
+  MY_ENV2: you did it
+metadata:
+  name: hello-world
+  namespace: meetup-medellin

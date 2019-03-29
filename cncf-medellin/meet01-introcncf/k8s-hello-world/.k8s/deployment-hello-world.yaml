@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hello-world
+  name: hello-world
+  namespace: meetup-medellin
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: hello-world
+  template:
+    metadata:
+      labels:
+        app: hello-world
+    spec:
+      containers:
+      - image: k8s-hello-world
+        imagePullPolicy: Never  #in order to download local image
+        name: k8s-hello-world
+        ports: 
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: hello-world
+
+          

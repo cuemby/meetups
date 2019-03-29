@@ -1,0 +1,21 @@
+{
+  "name": "k8s-hellow-world",
+  "version": "1.0.0",
+  "description": "This is a K8s hello world example",
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "github.com/cuemby"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["k8s", "example", "docker", "meetup medellin"],
+  "author": "andres perez <andres@cuemby.com>",
+  "license": "ISC",
+
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

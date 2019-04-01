@@ -7,7 +7,7 @@ proyecto de ejemplo en NodeJS para probar kubernetes
 
 ###  **Dependencias**
 
-- [Docker](https://docs.docker.com/install/)
+- [Docker](https://docs.docker.com/install/) (opcional)
 - [Oracle Vbox](https://www.virtualbox.org/)
 - [Minikube](https://kubernetes.io/docs/tasks/tools/install-minikube/) 
 - Editor de texto o IDE

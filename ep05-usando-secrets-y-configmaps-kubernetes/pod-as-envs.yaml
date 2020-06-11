@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod2
+  labels:
+    name: mypod2
+spec:
+  containers:
+  - name: mypod2
+    image: busybox
+    args:
+    - sleep
+    - "100000000"
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 8080
+    env:
+    - name: PRIVATE_KEY
+      valueFrom:
+          secretKeyRef:
+            key: id_rsa
+            name: my-secret1
+    envFrom:
+    - configMapRef:
+        name: my-config2
+    - secretRef:
+        name: my-secret2

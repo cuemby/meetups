@@ -1,0 +1,204 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","kind":"Pod","metadata":{"annotations":{},"labels":{"name":"mypod2"},"name":"mypod2","namespace":"default"},"spec":{"containers":[{"args":["sleep","100000000"],"env":[{"name":"PRIVATE_KEY","valueFrom":{"secretKeyRef":{"key":"id_rsa","name":"my-secret1"}}}],"envFrom":[{"configMapRef":{"name":"my-config2"}},{"secretRef":{"name":"my-secret2"}}],"image":"busybox","name":"mypod2","ports":[{"containerPort":8080}],"resources":{"limits":{"cpu":"500m","memory":"128Mi"}}}]}}
+  creationTimestamp: "2020-06-11T21:48:01Z"
+  labels:
+    name: mypod2
+  managedFields:
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:metadata:
+        f:annotations:
+          .: {}
+          f:kubectl.kubernetes.io/last-applied-configuration: {}
+        f:labels:
+          .: {}
+          f:name: {}
+      f:spec:
+        f:containers:
+          k:{"name":"mypod2"}:
+            .: {}
+            f:args: {}
+            f:env:
+              .: {}
+              k:{"name":"PRIVATE_KEY"}:
+                .: {}
+                f:name: {}
+                f:valueFrom:
+                  .: {}
+                  f:secretKeyRef:
+                    .: {}
+                    f:key: {}
+                    f:name: {}
+            f:envFrom: {}
+            f:image: {}
+            f:imagePullPolicy: {}
+            f:name: {}
+            f:ports:
+              .: {}
+              k:{"containerPort":8080,"protocol":"TCP"}:
+                .: {}
+                f:containerPort: {}
+                f:protocol: {}
+            f:resources:
+              .: {}
+              f:limits:
+                .: {}
+                f:cpu: {}
+                f:memory: {}
+              f:requests:
+                .: {}
+                f:cpu: {}
+                f:memory: {}
+            f:terminationMessagePath: {}
+            f:terminationMessagePolicy: {}
+        f:dnsPolicy: {}
+        f:enableServiceLinks: {}
+        f:restartPolicy: {}
+        f:schedulerName: {}
+        f:securityContext: {}
+        f:terminationGracePeriodSeconds: {}
+    manager: kubectl
+    operation: Update
+    time: "2020-06-11T21:48:01Z"
+  - apiVersion: v1
+    fieldsType: FieldsV1
+    fieldsV1:
+      f:status:
+        f:conditions:
+          k:{"type":"ContainersReady"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Initialized"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+          k:{"type":"Ready"}:
+            .: {}
+            f:lastProbeTime: {}
+            f:lastTransitionTime: {}
+            f:status: {}
+            f:type: {}
+        f:containerStatuses: {}
+        f:hostIP: {}
+        f:phase: {}
+        f:podIP: {}
+        f:podIPs:
+          .: {}
+          k:{"ip":"10.244.0.6"}:
+            .: {}
+            f:ip: {}
+        f:startTime: {}
+    manager: kubelet
+    operation: Update
+    time: "2020-06-11T21:48:03Z"
+  name: mypod2
+  namespace: default
+  resourceVersion: "59597"
+  selfLink: /api/v1/namespaces/default/pods/mypod2
+  uid: 3a327913-5102-4627-b664-da6fb33001c4
+spec:
+  containers:
+  - args:
+    - sleep
+    - "100000000"
+    env:
+    - name: PRIVATE_KEY
+      valueFrom:
+        secretKeyRef:
+          key: id_rsa
+          name: my-secret1
+    envFrom:
+    - configMapRef:
+        name: my-config2
+    - secretRef:
+        name: my-secret2
+    image: busybox
+    imagePullPolicy: Always
+    name: mypod2
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+    resources:
+      limits:
+        cpu: 500m
+        memory: 128Mi
+      requests:
+        cpu: 500m
+        memory: 128Mi
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: default-token-bhl5t
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: lhk-ep5-control-plane
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: default-token-bhl5t
+    secret:
+      defaultMode: 420
+      secretName: default-token-bhl5t
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2020-06-11T21:48:01Z"
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2020-06-11T21:48:03Z"
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2020-06-11T21:48:03Z"
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2020-06-11T21:48:01Z"
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://e1b2f21353ade418c38ba3b0ab0be9ed153d10f7500d4401900ed86b74fd6f7b
+    image: docker.io/library/busybox:latest
+    imageID: docker.io/library/busybox@sha256:95cf004f559831017cdf4628aaf1bb30133677be8702a8c5f2994629f637a209
+    lastState: {}
+    name: mypod2
+    ready: true
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2020-06-11T21:48:02Z"
+  hostIP: 172.18.0.2
+  phase: Running
+  podIP: 10.244.0.6
+  podIPs:
+  - ip: 10.244.0.6
+  qosClass: Guaranteed
+  startTime: "2020-06-11T21:48:01Z"

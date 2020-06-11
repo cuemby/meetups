@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: mypod
+  labels:
+    name: mypod
+spec:
+  containers:
+  - name: mypod
+    image: busybox
+    args:
+    - sleep
+    - "100000000"
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 8080
+    envFrom:
+      - configMapRef:
+          name: my-config2
+      - secretRef:
+          name: my-secret2
+    volumeMounts:
+    - mountPath: /secrets/my-secret1
+      name: mysecretasvolume
+    - mountPath: /configs/my-config1
+      name: myconfigmapasvolume
+  volumes:
+  - name: mysecretasvolume
+    secret:
+      secretName: my-secret1
+  - name: myconfigmapasvolume
+    configMap:
+        name: my-config1

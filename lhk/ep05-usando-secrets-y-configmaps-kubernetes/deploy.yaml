@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: myapp3
+spec:
+  selector:
+    matchLabels:
+      app: myapp3
+  template:
+    metadata:
+      labels:
+        app: myapp3
+    spec:
+      containers:
+      - name: myapp3
+        image: busybox
+        args:
+        - sleep
+        - "100000000"
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
+        envFrom:
+        - configMapRef:
+            name: my-config2
+        - secretRef:
+            name: my-secret2
+        volumeMounts:
+        - mountPath: /secrets/my-secret1
+          name: mysecretasvolume
+        - mountPath: /configs/my-config1
+          name: myconfigmapasvolume
+      volumes:
+      - name: mysecretasvolume
+        secret:
+          secretName: my-secret1
+      - name: myconfigmapasvolume
+        configMap:
+            name: my-config1

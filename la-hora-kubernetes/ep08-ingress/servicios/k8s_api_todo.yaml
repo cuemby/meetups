@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: api-todo
+  name: api-todo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-todo
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: api-todo
+    spec:
+      containers:
+        - image: netsaj/lhk-chapter8-api-todo:v1
+          name: lhk-chapter8-api-todo
+          imagePullPolicy: Always
+          env:
+            - name: POSTGRES_HOST
+              value: postgres.default
+            - name: HOST_ACCOUNTS
+              value: api-accounts.default
+            - name:  POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name:  postgres-config
+                  key:  POSTGRES_DB
+            - name:  POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name:  postgres-config
+                  key:  POSTGRES_PASSWORD
+            - name:  POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name:  postgres-config
+                  key:  POSTGRES_USER
+          resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: api-todo
+  name: api-todo
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 1324
+  selector:
+    app: api-todo
+  type: ClusterIP
+status:
+  loadBalancer: {}
+

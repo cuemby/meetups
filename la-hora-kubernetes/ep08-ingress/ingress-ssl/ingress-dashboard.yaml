@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: dashboard
+  annotations:
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+spec:
+  tls:
+    - hosts:
+      - app.lahorakubernetes.cf
+      secretName: app.lahorakubernetes.cf
+  rules:
+  - host: app.lahorakubernetes.cf
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: dashboard
+          servicePort: 80

@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: dashboard
+  name: dashboard
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dashboard
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: dashboard
+    spec:
+      containers:
+        - image: netsaj/lhk-chapter8-dashboard:v2
+          name: lhk-chapter8-dashboard
+          imagePullPolicy: Always
+          resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: dashboard
+  name: dashboard
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 80
+  selector:
+    app: dashboard
+  type: ClusterIP
+status:
+  loadBalancer: {}
+

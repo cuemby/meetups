@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: api-accounts
+  name: api-accounts
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-accounts
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: api-accounts
+    spec:
+      containers:
+        - image: netsaj/lhk-chapter8-api-accounts:v1
+          name: lhk-chapter8-api-accounts
+          imagePullPolicy: Always
+          env:
+            - name: POSTGRES_HOST
+              value: postgres.default
+            - name:  POSTGRES_DB
+              valueFrom:
+                secretKeyRef:
+                  name:  postgres-config
+                  key:  POSTGRES_DB
+            - name:  POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name:  postgres-config
+                  key:  POSTGRES_PASSWORD
+            - name:  POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name:  postgres-config
+                  key:  POSTGRES_USER
+          resources: {}
+status: {}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  creationTimestamp: null
+  labels:
+    app: api-accounts
+  name: api-accounts
+spec:
+  ports:
+    - port: 80
+      protocol: TCP
+      targetPort: 1323
+  selector:
+    app: api-accounts
+  type: ClusterIP
+status:
+  loadBalancer: {}
+

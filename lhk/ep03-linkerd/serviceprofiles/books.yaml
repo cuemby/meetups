@@ -1,0 +1,36 @@
+apiVersion: linkerd.io/v1alpha2
+kind: ServiceProfile
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"linkerd.io/v1alpha2","kind":"ServiceProfile","metadata":{"annotations":{},"creationTimestamp":"2020-05-27T09:15:40Z","generation":1,"name":"books.booksapp.svc.cluster.local","namespace":"booksapp","resourceVersion":"73036","selfLink":"/apis/linkerd.io/v1alpha2/namespaces/booksapp/serviceprofiles/books.booksapp.svc.cluster.local","uid":"06741ecf-165f-43a4-86fd-1333894782f5"},"spec":{"routes":[{"condition":{"method":"GET","pathRegex":"/books\\.json"},"name":"GET /books.json"},{"condition":{"method":"POST","pathRegex":"/books\\.json"},"name":"POST /books.json"},{"condition":{"method":"DELETE","pathRegex":"/books/[^/]*\\.json"},"name":"DELETE /books/{id}.json"},{"condition":{"method":"GET","pathRegex":"/books/[^/]*\\.json"},"name":"GET /books/{id}.json"},{"condition":{"method":"PUT","pathRegex":"/books/[^/]*\\.json"},"name":"PUT /books/{id}.json","timeout":"30ms"}]}}
+  creationTimestamp: "2020-05-27T09:15:40Z"
+  generation: 2
+  name: books.booksapp.svc.cluster.local
+  namespace: booksapp
+  resourceVersion: "74013"
+  selfLink: /apis/linkerd.io/v1alpha2/namespaces/booksapp/serviceprofiles/books.booksapp.svc.cluster.local
+  uid: 06741ecf-165f-43a4-86fd-1333894782f5
+spec:
+  routes:
+  - condition:
+      method: GET
+      pathRegex: /books\.json
+    name: GET /books.json
+  - condition:
+      method: POST
+      pathRegex: /books\.json
+    name: POST /books.json
+  - condition:
+      method: DELETE
+      pathRegex: /books/[^/]*\.json
+    name: DELETE /books/{id}.json
+  - condition:
+      method: GET
+      pathRegex: /books/[^/]*\.json
+    name: GET /books/{id}.json
+  - condition:
+      method: PUT
+      pathRegex: /books/[^/]*\.json
+    name: PUT /books/{id}.json
+    timeout: 30ms
